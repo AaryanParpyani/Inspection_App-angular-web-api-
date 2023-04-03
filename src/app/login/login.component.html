@@ -1,0 +1,36 @@
+<div class="login-box">
+    <h2>Inspection Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="loginDone()">
+      <div class="user-box">
+        <input type="text" class="form-control" id="name" name="" required="" formControlName="name"> 
+        <label class="form-label" for="name">Username</label>
+        <div class="form-text" *ngIf="Name.errors?.['required'] && (Name.touched || Name.dirty)">
+          Name is required!!!
+      </div>
+      <div class="form-text" *ngIf="Name.errors?.['minlength'] && (Name.touched || Name.dirty)">
+          Name is too short!!!
+      </div>
+      <div class="form-text" *ngIf="Name.errors?.['pattern'] && (Name.touched || Name.dirty)">
+          Name should start with alphabet
+      </div>
+      </div>
+      <div class="user-box">
+        <input type="password" class="form-control" id="password" name="" required="" formControlName="password">
+        <label class="form-label" for="password">Password</label>
+        <div class="form-text" *ngIf="Password.errors?.['required'] && (Password.dirty || Password.touched)">
+          Password is required!!!
+      </div>
+      <div class="form-text" *ngIf="Password.errors?.['minlength'] || Password.errors?.['maxlength'] && (Password.dirty || Password.touched)">
+          Minimum 6 characters required.
+      </div>
+      </div>
+      <a routerLink="/inspection">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <button type="submit" disabled="loginForm.invalid" class="btn-btn-primary button" routerLink="/inspection">L O G I N</button>
+      </a>
+      <a routerLink="/signup">New User ? Click to Sign Up</a>
+    </form>
+  </div>

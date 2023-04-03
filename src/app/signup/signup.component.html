@@ -1,0 +1,50 @@
+<p class="text-center fs-3" [ngClass]="isAccountCreated ? 'text-success pb-1' : 'text-danger pb-1'">
+  {{displayMsg}}</p>
+
+<div class="login-box">
+    <h2>Inspection Sign Up</h2>
+    <h5>Sign Up to use inspection services</h5><hr>
+    <form [formGroup]="signupform" (ngSubmit)="signupdone()">
+      <div class="user-box">
+        <input type="text" class="form-control" id="name" name="" required="" formControlName="name">
+        <label for="name" class="form-label">Name</label>
+        <div class="form-text" *ngIf="Name.errors?.['required'] && (Name.touched || Name.dirty)">
+            Name is required!!!
+        </div>
+        <div class="form-text" *ngIf="Name.errors?.['minlength'] && (Name.touched || Name.dirty)">
+            Name is too short!!!
+        </div>
+        <div class="form-text" *ngIf="Name.errors?.['pattern'] && (Name.touched || Name.dirty)">
+            Name should start with alphabet
+        </div>
+      </div>
+      <div class="user-box">
+        <input type="email" class="form-control" id="email" name="" required="" formControlName="email">
+        <label for="email" class="form-label">Email Id</label>
+        <div class="form-text" *ngIf="Email.errors?.['required'] && (Email.dirty || Email.touched)">
+            Email is required!!!
+        </div>
+        <div class="form-text" *ngIf="Email.errors?.['email'] && (Email.dirty || Email.touched)">
+            Email is invalid!!!
+        </div>
+      </div>
+      <div class="user-box">
+        <input type="password" class="form-control" id="password" name="" required="" formControlName="password">
+        <label for="password" class="form-label">Password</label>
+        <div class="form-text" *ngIf="Password.errors?.['required'] && (Password.dirty || Password.touched)">
+            Password is required!!!
+        </div>
+        <div class="form-text" *ngIf="Password.errors?.['minlength'] || Password.errors?.['maxlength'] && (Password.dirty || Password.touched)">
+            Minimum 6 characters required.
+        </div>
+      </div>
+      <a href="#">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <button type="submit" disabled="signupform.invalid" class="btn-btn-primary button">S I G N  U P</button>
+      </a>
+      <a routerLink="/login">Already a User?</a>
+    </form>
+  </div>
